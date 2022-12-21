@@ -1,5 +1,4 @@
 
-from turtledemo.chaos import line
 
 from Tools.demo.mcast import sender
 from vk_api.longpoll import VkLongPoll, VkEventType
