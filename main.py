@@ -77,7 +77,7 @@ def get_sex(user_id):
         write_msg(user_id, 'ошибка токена')
 
 
-def get_city(user_id, city_name):
+def get_city(user_id):
     url = url = f'https://api.vk.com/method/database.getCities'
     params = {'access_token': user_token,
               'user_ids': user_id,

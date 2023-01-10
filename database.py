@@ -1,7 +1,6 @@
 import psycopg2
-from sqlalchemy.sql.functions import user
 
-connection = psycopg2.connect
+connection = psycopg2
 connection.autocommit = True
 
 

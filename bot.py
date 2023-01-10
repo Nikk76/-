@@ -49,10 +49,9 @@ for event in longpoll.listen():
             find_persons(user_id, offset)
 
         elif request == 'далее':
-            for i in line:
-                offset += 1
-                find_persons(user_id, offset)
-                break
+            offset += 1
+            find_persons(user_id, offset)
+            break
         elif request == 'назад':
             write_msg(user_id, 'далее')
 
