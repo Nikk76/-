@@ -1,15 +1,11 @@
 import datetime
-
+from config import user_token, comm_token
 import requests
 import vk_api
 from select import select
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from database import insert_data_users
-
-user_token = input('user_Token: ')
-comm_token = input('comm_Token: ')
-
 
 vk = vk_api.VkApi(token=comm_token)
 longpoll = VkLongPoll(vk)
@@ -78,19 +74,21 @@ def get_sex(user_id):
 
 
 def get_city(user_id):
-    url = url = f'https://api.vk.com/method/database.getCities'
+    url = f'https://api.vk.com/method/users.get'
     params = {'access_token': user_token,
-              'user_ids': user_id,
               'fields': 'city',
+              'user_ids': user_id,
               'v': '5.131'}
     repl = requests.get(url, params=params)
     response = repl.json()
     try:
-        information_list = response['response']
-        for i in information_list:
-            for key, value in i.items():
-                find_city = i.get('city')
-                return find_city
+        information_dict = response['response']
+        for i in information_dict:
+            if 'city' in i:
+                city = i.get('city')
+                id = str(city.get('id'))
+                return id
+
     except KeyError:
         write_msg(user_id, 'ошибка токена')
 
@@ -209,4 +207,6 @@ def person_id(offset):
 
 
 print('Bot was created')
+
+
 
