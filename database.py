@@ -1,7 +1,6 @@
 import psycopg2
 
 connection = psycopg2
-connection.autocommit = True
 
 
 def create_table_users():

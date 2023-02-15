@@ -1,5 +1,5 @@
 from cgitb import text
-from main import get_city
+
 from keyboard import sender
 from main import *
 
@@ -11,15 +11,16 @@ for event in longpoll.listen():
         msg = event.text.lower()
         sender(user_id, text)
         if request == 'начать поиск':
-            write_msg(user_id, f'Привет, {get_name(user_id)}')
-            find_candidate(user_id)
-            write_msg(event.user_id, f'Нашёл для тебя пару')
-            found_person_info(user_id)
+            bot.write_msg(user_id, f'Привет, {bot.get_name(user_id)}')
+            bot.find_candidate(user_id)
+            bot.write_msg(event.user_id, f'Нашёл для тебя пару')
+            bot.found_person_info(user_id)
 
         elif request == 'посмотреть':
             for i in line:
-                found_person_info(user_id)
+                bot.found_person_info(user_id)
                 break
 
         else:
-            write_msg(event.user_id, 'некорректные данные')
+            bot.write_msg(event.user_id, 'некорректные данные')
+
